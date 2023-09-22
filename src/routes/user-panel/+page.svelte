@@ -23,7 +23,7 @@
 
 <hr />
 <!-- ITEM LIST TO DEPLOY POCKETBASE REALTIME-->
-<!-- <ListaItems items={data.items} /> -->
+<ListaItems items={data.items} />
 
 <style>
 	b {
