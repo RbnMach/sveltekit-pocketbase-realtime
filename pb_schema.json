@@ -1,0 +1,92 @@
+[
+  {
+    "id": "_pb_users_auth_",
+    "name": "cuenta",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "users_avatar",
+        "name": "avatar",
+        "type": "file",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "mimeTypes": [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/webp",
+            "image/avif",
+            "image/svg+xml"
+          ],
+          "thumbs": [],
+          "protected": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "\"\" != @request.auth.id || @request.data.email:isset = false",
+    "viewRule": "\"\" != @request.auth.id",
+    "createRule": "",
+    "updateRule": "\"\" != @request.auth.id || @request.data.id:isset = false",
+    "deleteRule": "\"\" != @request.auth.id",
+    "options": {
+      "allowEmailAuth": true,
+      "allowOAuth2Auth": true,
+      "allowUsernameAuth": true,
+      "exceptEmailDomains": null,
+      "manageRule": null,
+      "minPasswordLength": 8,
+      "onlyEmailDomains": null,
+      "requireEmail": false
+    }
+  },
+  {
+    "id": "8xpbajezssc2ce0",
+    "name": "items",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "wcxbpiz1",
+        "name": "name",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "naa3t7ch",
+        "name": "quantity",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "\"\" != @request.auth.id",
+    "viewRule": "\"\" != @request.auth.id",
+    "createRule": "\"\" != @request.auth.id",
+    "updateRule": "\"\" != @request.auth.id",
+    "deleteRule": "\"\" != @request.auth.id",
+    "options": {}
+  }
+]
