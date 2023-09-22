@@ -22,7 +22,7 @@ This configuration is in *$lib/conexion-pocketbase/conexion_pocket.ts*
 To reproduce the issue:
 
 1. Create two users in pocketbase in the "cuenta" entity
-2. In the project, start the two user sessions (either on different computers or different browser tabs or using the private tab) on the page http://localhost:5173/login
+2. In the project, start the two user sessions with emails (either on different computers or different browser tabs or using the private tab) on the page http://localhost:5173/login
 3. With both sessions started, update the pages of both users at the same time (two or more attempts must be made).
 
 This will reproduce the problem where one session will replace the other user's session.
