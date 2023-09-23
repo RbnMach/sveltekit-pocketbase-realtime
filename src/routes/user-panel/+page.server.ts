@@ -13,7 +13,7 @@ export const load = async ({ locals }) => {
 		throw redirect(307, `/`);
 	}
 	return {
-		user: locals.user.record,
+		user: locals.user,
 		items: structuredClone(items)
 	};
 };
