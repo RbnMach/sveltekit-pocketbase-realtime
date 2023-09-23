@@ -4,6 +4,7 @@
 	import type { PageData } from './$types';
 	import { onDestroy, onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
+	import { env } from '$env/dynamic/public';
 
 	export let items: PageData['items'];
 
@@ -14,14 +15,14 @@
 		quantity: ''
 	};
 
-	// REALTIME
-	const pb =  new PocketBase('http://127.0.0.1:8090');
+	// REALTIME POCKETBASE
+	const pb = new PocketBase(env.PUBLIC_POCKETBASE_URL);
+
 	onMount(async () => {
 		pb.authStore.loadFromCookie(document.cookie);
-		pb.authStore.onChange(() => {
-			document.cookie = pb.authStore.exportToCookie({ httpOnly: false }); 
-		});
-		pb.collection('items').subscribe('*', function (e:any) {
+		pb.collection('items').subscribe('*', function (e: any) {
+			// console.log(e.action);
+			// console.log(e.record);
 			invalidateAll();
 		});
 	});
@@ -73,7 +74,7 @@
 					}}>Edit</button
 				>
 				<form action="?/deleteItem" method="POST" use:enhance>
-					<input type="hidden" name="id" bind:value={row.id}/>
+					<input type="hidden" name="id" bind:value={row.id} />
 					<button type="submit">Delete</button>
 				</form>
 			</td>
@@ -84,7 +85,7 @@
 </table>
 
 <style>
-   td{
-      padding-top: 10px;
-   }
+	td {
+		padding-top: 10px;
+	}
 </style>
