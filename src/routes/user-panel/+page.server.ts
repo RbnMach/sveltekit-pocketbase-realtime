@@ -3,7 +3,7 @@ import { ClientResponseError } from 'pocketbase';
 
 export const load = async ({ locals }) => {
 	// simulating database item list load time (3s)
-	await new Promise((resolve) => setTimeout(resolve, 3000));
+	// await new Promise((resolve) => setTimeout(resolve, 3000));
 
 	const items = await locals.pb.collection('items').getFullList({
 		sort: '-created'

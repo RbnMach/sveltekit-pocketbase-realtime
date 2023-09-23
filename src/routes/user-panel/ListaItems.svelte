@@ -1,6 +1,9 @@
 <script lang="ts">
+	import PocketBase from 'pocketbase';
 	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
+	import { onDestroy, onMount } from 'svelte';
+	import { invalidateAll } from '$app/navigation';
 
 	export let items: PageData['items'];
 
@@ -10,6 +13,21 @@
 		name: '',
 		quantity: ''
 	};
+
+	// REALTIME
+	const pb =  new PocketBase('http://127.0.0.1:8090');
+	onMount(async () => {
+		pb.authStore.loadFromCookie(document.cookie);
+		pb.authStore.onChange(() => {
+			document.cookie = pb.authStore.exportToCookie({ httpOnly: false }); 
+		});
+		pb.collection('items').subscribe('*', function (e:any) {
+			invalidateAll();
+		});
+	});
+	onDestroy(() => {
+		pb.collection('items').unsubscribe('*');
+	});
 </script>
 
 <h3>ITEMS REALTIME (IN PROGRESS)</h3>

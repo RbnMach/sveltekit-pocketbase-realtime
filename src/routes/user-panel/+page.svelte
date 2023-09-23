@@ -18,7 +18,7 @@
 
 <button on:click={logout}>LOGOUT</button>
 
-<p>User who logged in : <b>{data.user?.record.email}</b></p>
+<p>User who logged in : <b>{data.user?.email}</b></p>
 <!-- <pre>{JSON.stringify(data.user, null, 2)}</pre> -->
 
 <hr />

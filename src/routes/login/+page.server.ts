@@ -11,9 +11,7 @@ export const actions = {
 	login: async ({ locals, request }) => {
 		const formData = await request.formData();
 		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
-		console.log("llegaron lo datos: ", email, password);
-		
+		const password = formData.get('password') as string;		
 
 		try {
 			const resLogin = await locals.pb.collection('cuenta').authWithPassword(email, password);
